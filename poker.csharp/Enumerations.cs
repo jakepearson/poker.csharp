@@ -2,16 +2,14 @@ using System;
 
 namespace poker.csharp
 {
-	public enum ESuit 
-	{
+	public enum ESuit {
 		Diamonds,
 		Spades,
 		Hearts,
 		Clubs
 	}
 
-	public enum ERank
-	{
+	public enum ERank {
 		Two,
 		Three,
 		Four,
@@ -27,8 +25,7 @@ namespace poker.csharp
 		Ace
 	}
 
-	public enum EHandType
-	{
+	public enum EHandType {
 		Pair,
 		TwoPair,
 		ThreeOfAKind,

@@ -40,7 +40,7 @@
     <Compile Include="PokerTest.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="Hand.cs" />
+    <Compile Include="Extension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

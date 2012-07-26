@@ -1,6 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="poker.csharp/Poker.cs">
+    <Files>
+      <File FileName="poker.csharp/PokerTest.cs" Line="21" Column="37" />
+      <File FileName="poker.csharp/Poker.cs" Line="10" Column="65" />
+      <File FileName="poker.csharp/Enumerations.cs" Line="39" Column="13" />
+      <File FileName="poker.csharp/Card.cs" Line="14" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="poker.csharp" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Poker.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
