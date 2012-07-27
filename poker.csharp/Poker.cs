@@ -29,16 +29,20 @@ namespace poker.csharp
 			return hand => hand.GroupBy(c => c.Rank).Where(g => g.Count() == size).Count() == count;
 		}
 
-		public static EHandType GetHandType(IEnumerable<Card> hand) {
-			var pokerType = typeof(Poker);
-			foreach(var type in Enum.GetValues(typeof(EHandType)).Cast<EHandType>()) {
-				var field = pokerType.GetField(type.ToString(), BindingFlags.Static | BindingFlags.Public);
-				var test = (Func<IEnumerable<Card>, bool>)field.GetValue(null);
-				if(test(hand)) {
-					return (EHandType)Enum.Parse(typeof(EHandType), field.Name);
+		public static IEnumerable<EHandType> GetHandTypes(IEnumerable<Card> hand) {
+			return Types.Where(t => t.Value(hand)).Select(t => t.Key);
+		}
+
+		static IEnumerable<KeyValuePair<EHandType, Func<IEnumerable<Card>, bool>>> Types {
+			get {
+				var pokerType = typeof(Poker);
+				foreach(var type in Enum.GetValues(typeof(EHandType)).Cast<EHandType>()) {
+					var field = pokerType.GetField(type.ToString(), BindingFlags.Static | BindingFlags.Public);
+					var test = (Func<IEnumerable<Card>, bool>)field.GetValue(null);
+					yield return new KeyValuePair<EHandType, Func<IEnumerable<Card>, bool>>(type, test);
 				}
+
 			}
-			return EHandType.None;
 		}
 	}
 }

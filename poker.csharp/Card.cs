@@ -11,8 +11,6 @@ namespace poker.csharp
 			Suit = suit;
 			Rank = rank;
 		}
-
-
 	}
 }
 

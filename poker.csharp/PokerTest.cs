@@ -25,7 +25,7 @@ namespace poker.csharp
 			Assert.IsTrue(handTest(hand), "Good hand");
 			Assert.IsFalse(handTest(EmptyHand), "Bad hand");
 
-			Assert.AreEqual(type, Poker.GetHandType(hand));
+			Assert.AreEqual(type, Poker.GetHandTypes(hand).First());
 		}
 
 		public IEnumerable<TestCaseData> TestSource() {
