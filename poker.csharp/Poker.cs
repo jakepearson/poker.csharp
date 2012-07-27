@@ -35,13 +35,11 @@ namespace poker.csharp
 
 		static IEnumerable<KeyValuePair<EHandType, Func<IEnumerable<Card>, bool>>> Types {
 			get {
-				var pokerType = typeof(Poker);
-				foreach(var type in Enum.GetValues(typeof(EHandType)).Cast<EHandType>()) {
-					var field = pokerType.GetField(type.ToString(), BindingFlags.Static | BindingFlags.Public);
-					var test = (Func<IEnumerable<Card>, bool>)field.GetValue(null);
-					yield return new KeyValuePair<EHandType, Func<IEnumerable<Card>, bool>>(type, test);
-				}
-
+				var flags = BindingFlags.Static | BindingFlags.Public;
+				var types = Enum.GetValues(typeof(EHandType)).Cast<EHandType>();
+				return types.Select(t => new KeyValuePair<EHandType, Func<IEnumerable<Card>, bool>>(
+					t, 
+					(Func<IEnumerable<Card>, bool>)typeof(Poker).GetField(t.ToString(), flags).GetValue(null)));
 			}
 		}
 	}
