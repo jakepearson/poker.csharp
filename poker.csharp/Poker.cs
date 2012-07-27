@@ -7,7 +7,7 @@ namespace poker.csharp
 {
 	public static class Poker
 	{
-		public static readonly Func<IEnumerable<Card>, bool> Pair = HasGroup(2, 1);
+		public static readonly Func<IEnumerable<Card>, bool> Pair = HasGroup(2);
 		public static readonly Func<IEnumerable<Card>, bool> TwoPair = HasGroup(2, 2);
 		public static readonly Func<IEnumerable<Card>, bool> ThreeOfAKind = HasGroup(3);
 		public static readonly Func<IEnumerable<Card>, bool> FourOfAKind = HasGroup(4);
@@ -20,7 +20,7 @@ namespace poker.csharp
 
 		public static readonly Func<IEnumerable<Card>, bool> StraightFlush = And(Straight, Flush);
 		public static readonly Func<IEnumerable<Card>, bool> RoyalFlush = 
-			And(StraightFlush, h => (ERank)h.Select(c => (int)c.Rank).Max() == ERank.Ace);
+			And(StraightFlush, h => h.Where(c => c.Rank == ERank.Ace).Any());
 
 		static Func<IEnumerable<Card>, bool> HasGroup(int size, int count = 1) {
 			return hand => hand.GroupBy(c => c.Rank).Where(g => g.Count() == size).Count() == count;

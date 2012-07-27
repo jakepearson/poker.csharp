@@ -18,21 +18,12 @@ namespace poker.csharp
 		IEnumerable<Card> FlushHand = new[] { "DK", "DA", "D4", "D2", "D3" }.ToHand();
 		IEnumerable<Card> StraightHand = new[] { "C2", "D3", "H4", "D6", "D5" }.ToHand();
 		IEnumerable<Card> StraightFlushHand = new[] { "D2", "D3", "D4", "D6", "D5" }.ToHand();
-		IEnumerable<Card> RoyalFlushHand = new[] { "DA", "DK", "HJ", "DQ", "D10" }.ToHand();
-
-		[Test]
-		public void Pair() {
-			Assert.IsTrue(Poker.Pair(PairHand));
-		}
-
-		public void TwoPair() {
-			Assert.IsTrue(Poker.TwoPair(TwoPairHand));
-		}
+		IEnumerable<Card> RoyalFlushHand = new[] { "DA", "DK", "DJ", "DQ", "D10" }.ToHand();
 
 		[Test, TestCaseSource("TestSource")]
 		public void Test(Func<IEnumerable<Card>, bool> handTest, IEnumerable<Card> hand) {
-			Assert.IsTrue(handTest(hand));
-			Assert.IsFalse(handTest(EmptyHand));
+			Assert.IsTrue(handTest(hand), "Good hand");
+			Assert.IsFalse(handTest(EmptyHand), "Bad hand");
 		}
 
 		public IEnumerable<TestCaseData> TestSource() {
