@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 
 namespace poker.csharp
 {
@@ -33,6 +33,18 @@ namespace poker.csharp
 				}
 				return true;
 			};
+		}
+
+		public static EHandType GetHandType(IEnumerable<Card> hand) {
+			var pokerType = typeof(Poker);
+			foreach(var type in Enum.GetValues(typeof(EHandType)).Cast<EHandType>()) {
+				var field = pokerType.GetField(type.ToString(), BindingFlags.Static | BindingFlags.Public);
+				var test = (Func<IEnumerable<Card>, bool>)field.GetValue(null);
+				if(test(hand)) {
+					return (EHandType)Enum.Parse(typeof(EHandType), field.Name);
+				}
+			}
+			return EHandType.None;
 		}
 	}
 }

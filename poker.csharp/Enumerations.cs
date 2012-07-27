@@ -26,14 +26,16 @@ namespace poker.csharp
 	}
 
 	public enum EHandType {
-		Pair,
-		TwoPair,
-		ThreeOfAKind,
-		FourOfAKind,
-		FullHouse,
-		Straight,
+		RoyalFlush,
+		StraightFlush,
 		Flush,
-		RoyalFlush
+		Straight,
+		FullHouse,
+		FourOfAKind,
+		ThreeOfAKind,
+		TwoPair,
+		Pair,
+		None
 	}
 }
 

@@ -21,21 +21,23 @@ namespace poker.csharp
 		IEnumerable<Card> RoyalFlushHand = new[] { "DA", "DK", "DJ", "DQ", "D10" }.ToHand();
 
 		[Test, TestCaseSource("TestSource")]
-		public void Test(Func<IEnumerable<Card>, bool> handTest, IEnumerable<Card> hand) {
+		public void Test(Func<IEnumerable<Card>, bool> handTest, IEnumerable<Card> hand, EHandType type) {
 			Assert.IsTrue(handTest(hand), "Good hand");
 			Assert.IsFalse(handTest(EmptyHand), "Bad hand");
+
+			Assert.AreEqual(type, Poker.GetHandType(hand));
 		}
 
 		public IEnumerable<TestCaseData> TestSource() {
-			yield return new TestCaseData(Poker.Pair, PairHand).SetName("Pair");
-			yield return new TestCaseData(Poker.TwoPair, TwoPairHand).SetName("Two Pair");
-			yield return new TestCaseData(Poker.ThreeOfAKind, ThreeOfAKindHand).SetName("Three of a Kind");
-			yield return new TestCaseData(Poker.FourOfAKind, FourOfAKindHand).SetName("Four of a Kind");
-			yield return new TestCaseData(Poker.FullHouse, FullHouseHand).SetName("Full House");
-			yield return new TestCaseData(Poker.Flush, FlushHand).SetName("Flush");
-			yield return new TestCaseData(Poker.Straight, StraightHand).SetName("Straight");
-			yield return new TestCaseData(Poker.StraightFlush, StraightFlushHand).SetName("Straight Flush");
-			yield return new TestCaseData(Poker.RoyalFlush, RoyalFlushHand).SetName("Royal Flush");
+			yield return new TestCaseData(Poker.Pair, PairHand, EHandType.Pair).SetName("Pair");
+			yield return new TestCaseData(Poker.TwoPair, TwoPairHand, EHandType.TwoPair).SetName("Two Pair");
+			yield return new TestCaseData(Poker.ThreeOfAKind, ThreeOfAKindHand, EHandType.ThreeOfAKind).SetName("Three of a Kind");
+			yield return new TestCaseData(Poker.FourOfAKind, FourOfAKindHand, EHandType.FourOfAKind).SetName("Four of a Kind");
+			yield return new TestCaseData(Poker.FullHouse, FullHouseHand, EHandType.FullHouse).SetName("Full House");
+			yield return new TestCaseData(Poker.Flush, FlushHand, EHandType.Flush).SetName("Flush");
+			yield return new TestCaseData(Poker.Straight, StraightHand, EHandType.Straight).SetName("Straight");
+			yield return new TestCaseData(Poker.StraightFlush, StraightFlushHand, EHandType.StraightFlush).SetName("Straight Flush");
+			yield return new TestCaseData(Poker.RoyalFlush, RoyalFlushHand, EHandType.RoyalFlush).SetName("Royal Flush");
 		}
 	}
 }
